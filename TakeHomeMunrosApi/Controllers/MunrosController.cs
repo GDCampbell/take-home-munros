@@ -18,7 +18,7 @@ namespace TakeHomeMunrosApi.Controllers
 
         // GET: api/<MunrosController>/
         [HttpGet]
-        public IActionResult Get([FromQuery]MunroQuery sortQuery) //[FromQuery(Name = "min_height_in_metres")] int? minHeightInMetres, [FromQuery]int? maxHeightInMetres
+        public IActionResult Get([FromQuery]MunroQuery sortQuery)
         {
             if ((sortQuery?.MinHeightInMetres ?? 0) > (sortQuery?.MaxHeightInMetres ?? double.MaxValue))
             {

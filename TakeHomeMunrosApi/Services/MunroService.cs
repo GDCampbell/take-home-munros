@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using AutoMapper;
+
 using TakeHomeMunrosApi.DataContext;
+using TakeHomeMunrosApi.Helpers;
 using TakeHomeMunrosApi.Models;
 using TakeHomeMunrosApi.Queries;
 
@@ -23,11 +25,23 @@ namespace TakeHomeMunrosApi.Services
             var allMunros = dataContext.Munros
                 .Where(m => !string.IsNullOrEmpty(m.HillCategoryPost1997))
                 .Select(mapper.Map<MunroModel>).ToList();
+            
 
             var filteredMunros = allMunros.Where(m => m.HeightInMetres >= (sortQuery.MinHeightInMetres ?? 0)
                                                       && m.HeightInMetres <= (sortQuery.MaxHeightInMetres ?? double.MaxValue)
                                                       && (sortQuery.Category == HillCategory.Either || GetHillCategoryStringAsEnum(m.HillCategory) == sortQuery.Category)).ToList();
 
+            if (sortQuery.SortingCriterias.Any())
+            {
+                var distinctSortingCriterias = sortQuery.SortingCriterias
+                    .GroupBy(c => c.PropertyName)
+                    .Select(g => g.First()).OrderBy(c => c.Priority).ToList();
+
+                var sortedMunros = filteredMunros.AsQueryable().OrderBySortingCriterias(distinctSortingCriterias);
+
+                filteredMunros = sortedMunros.ToList();
+            }
+            
             return sortQuery.Limit != null ? filteredMunros.Take(sortQuery.Limit.Value) : filteredMunros;
         }
 
