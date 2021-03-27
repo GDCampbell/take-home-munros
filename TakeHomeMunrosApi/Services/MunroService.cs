@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using TakeHomeMunrosApi.DataContext;
 using TakeHomeMunrosApi.Models;
+using TakeHomeMunrosApi.Queries;
 
 namespace TakeHomeMunrosApi.Services
 {
@@ -17,15 +18,30 @@ namespace TakeHomeMunrosApi.Services
             this.mapper = mapper;
         }
 
-        public IEnumerable<MunroModel> GetMunros()
+        public IEnumerable<MunroModel> GetMunros(MunroQuery sortQuery)
         {
-            var munros = dataContext.Munros
+            var allMunros = dataContext.Munros
                 .Where(m => !string.IsNullOrEmpty(m.HillCategoryPost1997))
                 .Select(mapper.Map<MunroModel>).ToList();
 
-            return munros;
+            var filteredMunros = allMunros.Where(m => m.HeightInMetres >= (sortQuery.MinHeightInMetres ?? 0)
+                                                      && m.HeightInMetres <= (sortQuery.MaxHeightInMetres ?? double.MaxValue)
+                                                      && (sortQuery.Category == HillCategory.Either || GetHillCategoryStringAsEnum(m.HillCategory) == sortQuery.Category)).ToList();
+
+            return sortQuery.Limit != null ? filteredMunros.Take(sortQuery.Limit.Value) : filteredMunros;
         }
 
+        static HillCategory GetHillCategoryStringAsEnum(string category)
+        {
+            switch (category)
+            {
+                case "MUN":
+                    return HillCategory.Munro;
+                case "TOP":
+                    return HillCategory.Top;
+            }
 
+            return HillCategory.Either;
+        }
     }
 }

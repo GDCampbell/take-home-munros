@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
-using TakeHomeMunrosApi.Models;
+using TakeHomeMunrosApi.Queries;
 using TakeHomeMunrosApi.Services;
 
 namespace TakeHomeMunrosApi.Controllers
@@ -17,11 +16,16 @@ namespace TakeHomeMunrosApi.Controllers
             this.munroService = munroService;
         }
 
-        // GET: api/<MunrosController>
+        // GET: api/<MunrosController>/
         [HttpGet]
-        public IEnumerable<MunroModel> Get()
+        public IActionResult Get([FromQuery]MunroQuery sortQuery) //[FromQuery(Name = "min_height_in_metres")] int? minHeightInMetres, [FromQuery]int? maxHeightInMetres
         {
-            return munroService.GetMunros();
+            if ((sortQuery?.MinHeightInMetres ?? 0) > (sortQuery?.MaxHeightInMetres ?? double.MaxValue))
+            {
+                return BadRequest("Provided maximum height should be greater than the provided minimum height or zero.");
+            }
+
+            return Ok(munroService.GetMunros(sortQuery));
         }
 
         

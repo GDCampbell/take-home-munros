@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-
+using System.Linq;
 using AutoMapper;
 using CsvHelper;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +17,7 @@ namespace TakeHomeMunrosApi.DataContext
             using var reader = new StreamReader(environment.ContentRootPath + @"\Assets\munrotab_v6.2.csv");
             using var csvReader = new CsvReader(reader, CultureInfo.InvariantCulture);
 
-            Munros = csvReader.GetRecords<Munro>();
+            Munros = csvReader.GetRecords<Munro>().ToList();
         }
 
         public IEnumerable<Munro> Munros { get; }
