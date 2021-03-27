@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
-
-using TakeHomeMunrosApi.Models;
+using TakeHomeMunrosApi.Domain;
 
 namespace TakeHomeMunrosApi.DataContext
 {
     public interface IMunroDataContext
     {
-        IEnumerable<MunroModel> Munros { get; }
+        IEnumerable<Munro> Munros { get; }
     }
 }

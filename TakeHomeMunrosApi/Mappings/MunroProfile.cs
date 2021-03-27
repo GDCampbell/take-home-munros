@@ -9,8 +9,8 @@ namespace TakeHomeMunrosApi.Mappings
         public MunroProfile()
         {
             CreateMap<Munro, MunroModel>()
-                .ForMember(dest => dest.Category,
-                    opt => opt.MapFrom(src => src.Category));
+                .ForMember(dest => dest.HillCategory,
+                    opt => opt.MapFrom(src => src.HillCategoryPost1997));
         }
     }
 }
