@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using AutoMapper.Configuration.Annotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TakeHomeMunrosApi.Queries
 {
@@ -10,7 +11,8 @@ namespace TakeHomeMunrosApi.Queries
         public double? MinHeightInMetres { get; set; }
         public double? MaxHeightInMetres { get; set; }
         
-        [RegularExpression(@"(?:(?:(?:a|de){1}sc){1}(?:\((?:name|height){1}\)){1}(?:\,)?)+", ErrorMessage = "Requires the parameter to be in the format of asc|desc(name|height+p1) where the number following the p denotes its priority")]
+        [RegularExpression(@"(?:(?:a|de)sc\((?:name|height)\)(?:p[0-9])?(?:\,)?)+", 
+            ErrorMessage = "Requires the parameter to be in the format of asc|desc(name|height), optionally followed by # and a number from 0-9 to denote its priority.")]
         public string SortBy { get; set; }
         public int? Limit { get; set; }
         public HillCategory? Category { get; set; } = HillCategory.Either;

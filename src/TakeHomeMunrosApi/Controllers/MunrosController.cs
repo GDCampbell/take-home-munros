@@ -1,5 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc;
+using TakeHomeMunrosApi.Models;
 using TakeHomeMunrosApi.Queries;
 using TakeHomeMunrosApi.Services;
 
@@ -18,7 +19,7 @@ namespace TakeHomeMunrosApi.Controllers
 
         // GET: api/<MunrosController>/
         [HttpGet]
-        public IActionResult Get([FromQuery]MunroQuery sortQuery)
+        public ActionResult<IEnumerable<MunroModel>> Get([FromQuery]MunroQuery sortQuery)
         {
             if ((sortQuery?.MinHeightInMetres ?? 0) > (sortQuery?.MaxHeightInMetres ?? double.MaxValue))
             {

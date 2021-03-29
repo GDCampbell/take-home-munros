@@ -6,7 +6,7 @@ using TakeHomeMunrosApi.Queries;
 
 namespace TakeHomeMunrosApi.Helpers
 {
-    public static class IQueryableExtensions
+    public static class QueryableExtensions
     {
         public static IQueryable<T> OrderBySortingCriterias<T>(this IQueryable<T> source, IList<ISortingCriteria> sortingCriterias)
         {

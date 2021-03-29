@@ -26,7 +26,6 @@ namespace TakeHomeMunrosApi.Services
                 .Where(m => !string.IsNullOrEmpty(m.HillCategoryPost1997))
                 .Select(mapper.Map<MunroModel>).ToList();
             
-
             var filteredMunros = allMunros.Where(m => m.HeightInMetres >= (sortQuery.MinHeightInMetres ?? 0)
                                                       && m.HeightInMetres <= (sortQuery.MaxHeightInMetres ?? double.MaxValue)
                                                       && (sortQuery.Category == HillCategory.Either || GetHillCategoryStringAsEnum(m.HillCategory) == sortQuery.Category)).ToList();
@@ -35,7 +34,7 @@ namespace TakeHomeMunrosApi.Services
             {
                 var distinctSortingCriterias = sortQuery.SortingCriterias
                     .GroupBy(c => c.PropertyName)
-                    .Select(g => g.First()).OrderBy(c => c.Priority).ToList();
+                    .Select(g => g.OrderBy(g => g.Priority).First()).OrderBy(c => c.Priority).ToList();
 
                 var sortedMunros = filteredMunros.AsQueryable().OrderBySortingCriterias(distinctSortingCriterias);
 
