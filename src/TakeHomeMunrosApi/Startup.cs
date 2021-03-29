@@ -24,7 +24,7 @@ namespace TakeHomeMunrosApi
         {
             services.AddAutoMapper(typeof(Startup));
             services.AddSingleton<IMunroDataContext, MunroDataContext>();
-            services.AddScoped <MunroService>();
+            services.AddScoped <IMunroService, MunroService>();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {

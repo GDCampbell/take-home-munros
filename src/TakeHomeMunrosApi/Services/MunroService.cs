@@ -9,7 +9,7 @@ using TakeHomeMunrosApi.Queries;
 
 namespace TakeHomeMunrosApi.Services
 {
-    public class MunroService
+    public class MunroService : IMunroService
     {
         readonly IMunroDataContext dataContext;
         readonly IMapper mapper;
@@ -34,7 +34,7 @@ namespace TakeHomeMunrosApi.Services
             {
                 var distinctSortingCriterias = sortQuery.SortingCriterias
                     .GroupBy(c => c.PropertyName)
-                    .Select(g => g.OrderBy(g => g.Priority).First()).OrderBy(c => c.Priority).ToList();
+                    .Select(g => g.OrderBy(c => c.Priority).First()).OrderBy(c => c.Priority).ToList();
 
                 var sortedMunros = filteredMunros.AsQueryable().OrderBySortingCriterias(distinctSortingCriterias);
 

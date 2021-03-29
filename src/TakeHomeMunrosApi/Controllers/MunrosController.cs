@@ -10,9 +10,9 @@ namespace TakeHomeMunrosApi.Controllers
     [ApiController]
     public class MunrosController : ControllerBase
     {
-        readonly MunroService munroService;
+        readonly IMunroService munroService;
 
-        public MunrosController(MunroService munroService)
+        public MunrosController(IMunroService munroService)
         {
             this.munroService = munroService;
         }

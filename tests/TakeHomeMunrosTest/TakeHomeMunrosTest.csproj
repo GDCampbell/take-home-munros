@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\TakeHomeMunros.Data\TakeHomeMunros.Data.csproj" />
+    <ProjectReference Include="..\..\src\TakeHomeMunrosApi\TakeHomeMunrosApi.csproj" />
   </ItemGroup>
 
 </Project>
