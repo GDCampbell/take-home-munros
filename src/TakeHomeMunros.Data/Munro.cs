@@ -1,6 +1,6 @@
 ﻿using CsvHelper.Configuration.Attributes;
 
-namespace TakeHomeMunrosApi.Domain
+namespace TakeHomeMunros.Data
 {
     public class Munro
     {

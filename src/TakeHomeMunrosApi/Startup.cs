@@ -5,7 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 
-using TakeHomeMunrosApi.DataContext;
+using TakeHomeMunros.Data;
 using TakeHomeMunrosApi.Services;
 
 namespace TakeHomeMunrosApi

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
-using TakeHomeMunrosApi.Domain;
+
+using TakeHomeMunros.Data;
 using TakeHomeMunrosApi.Models;
 
 namespace TakeHomeMunrosApi.Mappings

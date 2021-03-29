@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using TakeHomeMunrosApi.Domain;
 
-namespace TakeHomeMunrosApi.DataContext
+namespace TakeHomeMunros.Data
 {
     public interface IMunroDataContext
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using AutoMapper;
 
-using TakeHomeMunrosApi.DataContext;
+using TakeHomeMunros.Data;
 using TakeHomeMunrosApi.Helpers;
 using TakeHomeMunrosApi.Models;
 using TakeHomeMunrosApi.Queries;

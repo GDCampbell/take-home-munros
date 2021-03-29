@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TakeHomeMunrosApi", "src\TakeHomeMunrosApi\TakeHomeMunrosApi.csproj", "{17625E30-8415-4108-BC12-F427B6B858AD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeHomeMunrosTest", "tests\TakeHomeMunrosTest\TakeHomeMunrosTest.csproj", "{FB9F5973-75C7-4FE2-B635-4AFCBCAB11F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TakeHomeMunros.Data", "src\TakeHomeMunros.Data\TakeHomeMunros.Data.csproj", "{4708A506-6437-4462-B5F4-6284EA351DC5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{17625E30-8415-4108-BC12-F427B6B858AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17625E30-8415-4108-BC12-F427B6B858AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17625E30-8415-4108-BC12-F427B6B858AD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB9F5973-75C7-4FE2-B635-4AFCBCAB11F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB9F5973-75C7-4FE2-B635-4AFCBCAB11F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB9F5973-75C7-4FE2-B635-4AFCBCAB11F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB9F5973-75C7-4FE2-B635-4AFCBCAB11F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4708A506-6437-4462-B5F4-6284EA351DC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4708A506-6437-4462-B5F4-6284EA351DC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4708A506-6437-4462-B5F4-6284EA351DC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4708A506-6437-4462-B5F4-6284EA351DC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
