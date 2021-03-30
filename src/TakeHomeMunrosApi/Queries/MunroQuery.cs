@@ -1,8 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using AutoMapper.Configuration.Annotations;
-using Microsoft.AspNetCore.Mvc;
 
 namespace TakeHomeMunrosApi.Queries
 {
@@ -19,6 +17,6 @@ namespace TakeHomeMunrosApi.Queries
 
         public IList<ISortingCriteria> SortingCriterias => 
             string.IsNullOrEmpty(SortBy) ? new List<ISortingCriteria>()
-            : SortBy.Split(",").Select(p => new MunroSortingCriteria(p) as ISortingCriteria).ToList();
+            : SortBy.Split(",").Where(q => !string.IsNullOrEmpty(q)).Select(p => new MunroSortingCriteria(p) as ISortingCriteria).ToList();
     }
 }

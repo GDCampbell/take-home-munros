@@ -340,5 +340,32 @@ namespace TakeHomeMunrosTest.ServiceTests
 
         }
 
+        [Fact]
+        public void GetMunros_WhenCalledSortByWithEmptyStringBetweenCriteria_ReturnsMunrosInCorrectOrder()
+        {
+            var fakeMunros = FakeMunroDataContext.GenerateFakeMunros(20, 15, 10, 500, 2000);
+
+            var orderedFakeMunros = fakeMunros.Where(m => !string.IsNullOrEmpty(m.HillCategoryPost1997))
+                .OrderByDescending(m => m.Name).ToList();
+
+            var fakeDataContext = new FakeMunroDataContext(fakeMunros);
+
+            var service = new MunroService(fakeDataContext, testMapper);
+
+            var query = new MunroQuery
+            {
+                SortBy = "desc(name),,asc(name)"
+            };
+
+            var result = service.GetMunros(query).ToList();
+
+            Assert.Equal(2, query.SortingCriterias.Count);
+
+            Assert.Equal(orderedFakeMunros.Count, result.Count);
+
+            Assert.Equal(orderedFakeMunros.Select(m => m.Name), result.Select(m => m.Name));
+
+        }
+
     }
 }
