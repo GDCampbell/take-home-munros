@@ -14,7 +14,9 @@ The criteria could be none, one or many of the following:
 ## Notes
 I mainly focussed on writing unit tests for the service as that is where the bulk of the logic is, as the controller is merely a passthrough for the service. Similarly, most of the validation for the query parameters passed in are handled by the route filtering during model binding.
 
-During development I tested using Postman to send requests. The full list of valid query parameters are:
+This was developed using VS 2019 but I have tested that it builds and runs, and can be tested, from within VS Code. Postman was used to make the requests to the API during development. 
+
+The full list of valid query parameters are:
 
 * minHeightInMetres (can accept a double) - optional (defaults to 0)
 * maxHeightInMetres (can accept a double) - optional (defaults to max double)
